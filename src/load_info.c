@@ -69,6 +69,11 @@ void load_stu_info()
 	int re;
 //	int count=0;
 
+	/*make head to NULL
+	 *in case of time of login in student,so load stu's info several times,like 3 to 6,to 9 etc
+	 */
+	stu_head = NULL;
+
 	FILE *fp = NULL;
 
 	//creat a node of stu
@@ -179,6 +184,11 @@ void load_tch_info()
 	int re;
 //	int count=0;
 
+	/*make head to NULL
+	 *in case of time of login in teacher,so load tch's info several times,like 3 to 6,to 9 etc
+	 */
+	tch_head = NULL;
+
 	FILE *fp = NULL;
 
 	//creat a node of tch
@@ -196,7 +206,7 @@ void load_tch_info()
 
 
 		//read it to node
-		re = fscanf(fp,"%d %s %s %d",&node.tch.id,node.tch.name,node.tch.passwd,&node.tch.age);
+		re = fscanf(fp,"%d %s %s %d",&node.tch.id,node.tch.name,node.tch.passwd,&node.tch.grade);
 
 
 		//insert this node to link

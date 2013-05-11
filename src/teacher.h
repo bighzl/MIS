@@ -10,7 +10,7 @@ typedef struct teacher
 	int id;
 	char name[128];
 	char passwd[32];
-	int age;
+	int grade;
 //	int course;
 
 }tch_t;

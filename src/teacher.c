@@ -11,15 +11,15 @@ void show_tch_info(tch_node_t *node)
 	system("clear"); 
 
 	printf("\n\n\n\n\t\t**************Your information******************\n\n\n\n"); 
-	printf("\n\n\t\tid\tname\tage\n\n\n"); 
-	printf("\t\t%d\t%s\t%d\n",node->tch.id,node->tch.name,node->tch.age); 
+	printf("\n\n\t\tid\tname\tgrade\n\n\n"); 
+	printf("\t\t%d\t%s\t%d\n",node->tch.id,node->tch.name,node->tch.grade); 
 
 #if 0 
 	getchar(); 
 	return; 
 #endif
 
-	printf("\n\n\n\t\t\t\t0.Back\n\n\n\n"); 
+	printf("\n\n\n\t\t0.Back\n\n"); 
 	printf("\t\t:");	
 	scanf("%d",&select_num); 
 	getchar(); 
@@ -41,23 +41,7 @@ void edit_p_score()
 
 	while(1)
 	{
-
-		system("clear");
-		printf("\n\n\n\n\t\t**************Edit person scores******************\n\n\n\n");
-
-		printf("\n\n\t\t\t\tid\tname\t\t\n\n\n");
-
-		for(p = stu_head; p!=NULL; p=p->next)
-		{
-			printf("\t\t\t\t%d\t%-12s\n",p->stu.id,p->stu.name);
-		}
-		printf("\t\t\t\t");
-
-
-		printf("input the id you wanna edit,or 0 for Back :");
-
-		scanf("%d",&select_num);
-		getchar();
+		select_num = meanu_edit_p_score();
 
 		if(select_num == 0)
 			return;
@@ -71,16 +55,16 @@ void edit_p_score()
 
 		if(p == NULL)
 			edit_p_score();
-		printf("\t\t\t\tnew math score:");	
+		printf("\t\tnew math score:");	
 		scanf("%d",&p->stu.score.math);
 
-		printf("\t\t\t\tnew math score:");	
+		printf("\t\tnew c score:");	
 		scanf("%d",&p->stu.score.c);
 
-		printf("\t\t\t\tnew math score:");	
+		printf("\t\tnew chinese score:");	
 		scanf("%d",&p->stu.score.chinese);
 
-		printf("\tEdit done!");
+		printf("\t\tEdit done!");
 		return;
 
 	}
@@ -94,27 +78,14 @@ void edit_c_score()
 
 	while(1)
 	{
-
-		system("clear");
-		printf("\n\n\n\n\t\t**************Edit course scores******************\n\n\n\n");
-
-		printf("\n\n\n\t\t\t\t1.math\n\n\n\n");
-		printf("\n\n\n\t\t\t\t2.c\n\n\n\n");
-		printf("\n\n\n\t\t\t\t3.chinese\n\n\n\n");
-
-		printf("\n\n\n\t\t\t\t0.Back\n\n\n\n");
-
-		printf("\t\t :");
-
-		scanf("%d",&select_num);
-		getchar();
+		select_num = meanu_edit_c_score();
 
 		switch (select_num)
 		{
 			case 1:
 				for(p = stu_head; p!=NULL; p=p->next)
 				{
-					printf("\t\t\t\t%d's new math score:",p->stu.id);
+					printf("\t\t%d's new math score:",p->stu.id);
 					scanf("%d",&p->stu.score.math);
 				}
 			//	return;
@@ -122,7 +93,7 @@ void edit_c_score()
 			case 2:
 				for(p = stu_head; p!=NULL; p=p->next)
 				{
-					printf("\t\t\t\t%d's new c score:",p->stu.id);
+					printf("\t\t%d's new c score:",p->stu.id);
 					scanf("%d",&p->stu.score.c);
 				}
 				return;
@@ -130,7 +101,7 @@ void edit_c_score()
 			case 3:
 				for(p = stu_head; p!=NULL; p=p->next)
 				{
-					printf("\t\t\t\t%d's new chinese score:",p->stu.id);
+					printf("\t\t%d's new chinese score:",p->stu.id);
 					scanf("%d",&p->stu.score.chinese);
 				}
 				return;
@@ -143,19 +114,8 @@ void edit_c_score()
 	}
 
 }
-#if 0
-			printf("\t\tnew math score:");	
-			scanf("%d",&p->stu.score.math);
 
-			printf("\t\tnew math score:");	
-			scanf("%d",&p->stu.score.c);
 
-			printf("\t\tnew math score:");	
-			scanf("%d",&p->stu.score.chinese);
-
-			printf("\t\tEdit done!");
-			return;
-#endif
 
 void edit_score()
 {
@@ -163,26 +123,7 @@ void edit_score()
 
 	while(1)
 	{
-
-		system("clear");
-		printf("\n\n\n\n\t\t**************Edit scores******************\n\n\n\n");
-		printf("\t\t\t\t1.Edit single Student scores\n");
-		printf("\t\t\t\t2.Edit single course score\n");
-		printf("\n\n\n\t\t\t\t0.Back\n\n\n\n");
-
-		printf("\t\t:");	
-		scanf("%d",&select_num);
-		getchar();
-
-#if 0
-		printf("\n\n\n\n\t\t**************Edit scores******************\n\n\n\n");
-		printf("\t\t\t\t1.Edit math score\n");
-		printf("\t\t\t\t2.Edit c score\n");
-		printf("\t\t\t\t3.Edit chinese score\n");
-		printf("\n\n\n\t\t\t\t0.Back\n\n\n\n");
-
-#endif
-
+		select_num = meanu_edit_score();
 		switch (select_num)
 		{
 			case 1:
@@ -233,7 +174,7 @@ void tch_show_score(tch_node_t *node,int mode)
 
 				break;
 			case 3:
-				//printf all  student's socre
+				//printf student's math socre
 				printf("\n\n\t\tid\tname\t\tmath\n\n\n");
 				for(p = stu_head; p!=NULL; p=p->next)
 				{
@@ -246,12 +187,12 @@ void tch_show_score(tch_node_t *node,int mode)
 				printf("\n\n\n");
 				//count ave
 				ave = (float)sum/count;
-				printf("\t\t\tave");
-				printf("\t\t%.2f",ave);	
+				printf("\t\tave");
+				printf("\t\t\t%.2f",ave);	
 				
 				break;
 			case 4:
-				//printf all  student's socre
+				//printf student's c socre
 				printf("\n\n\t\tid\tname\t\tc\n\n\n");
 				for(p = stu_head; p!=NULL; p=p->next)
 				{
@@ -263,12 +204,12 @@ void tch_show_score(tch_node_t *node,int mode)
 				printf("\n\n\n");
 				//count ave
 				ave = (float)sum/count;
-				printf("\t\t\tave");
-				printf("\t\t%.2f",ave);	
+				printf("\t\tave");
+				printf("\t\t\t%.2f",ave);	
 
 				break;
 			case 5:
-				//printf all  student's socre
+				//printf student's chinese socre
 				printf("\n\n\t\tid\tname\t\tchinese\n\n\n");
 				for(p = stu_head; p!=NULL; p=p->next)
 				{
@@ -280,17 +221,17 @@ void tch_show_score(tch_node_t *node,int mode)
 				printf("\n\n\n");
 				//count ave
 				ave = (float)sum/count;
-				printf("\t\t\tave");
-				printf("\t\t%.2f",ave);	
+				printf("\t\tave");
+				printf("\t\t\t%.2f",ave);	
 
 				break;
 		}
 
 
 
-		printf("\n\n\n\n\n\t\t\t\t1.Edit\n\n\n\n");
-		printf("\n\n\n\n\n\t\t\t\t0.Back\n\n\n\n");
-		printf("\t\t:");	
+		printf("\n\n\t\t1.Edit");
+		printf("\n\n\t\t0.Back");
+		printf("\n\n\t\t:");	
 
 		scanf("%d",&select_num);
 		getchar();
@@ -326,7 +267,7 @@ void tch_reset_passwd(tch_node_t *node)
 	//compare the input passwd and current passwd
 	if(strcmp(node->tch.passwd,old_passwd)!=0)
 	{
-		printf("\n\npassword error");
+		printf("\n\n\t\tpassword error");
 		tch_reset_passwd(node);
 		return;
 		//return is needed,in case of times of circle input;
@@ -343,7 +284,7 @@ void tch_reset_passwd(tch_node_t *node)
 	//compare two input new passwd
 	if(strcmp(new_passwd,new_passwd2)!=0)
 	{
-		printf("\n\nnew password not the same");
+		printf("\n\n\t\tnew password not the same");
 		tch_reset_passwd(node);
 		return;
 		//same as the previous one
@@ -351,7 +292,7 @@ void tch_reset_passwd(tch_node_t *node)
 
 	//set new passwd
 	strcpy(node->tch.passwd,new_passwd);
-	printf("your new passwd is : %s",new_passwd);
+	printf("\n\n\t\tyour new passwd is : %s",new_passwd);
 
 
 }
@@ -366,21 +307,7 @@ void tch_manager(tch_node_t *node)
 	int select_num;
 	while(1)
 	{
-		system("clear");
-		printf("\n\n\n\n\t\t**************Welcome aboard****************\n\n\n\n");
-		printf("\t\t\t\t1.Check your infomation\n");
-		printf("\t\t\t\t2.Check class's score by id\n");
-		printf("\t\t\t\t3.Check math score\n");
-		printf("\t\t\t\t4.Check C score\n");
-		printf("\t\t\t\t5.Check chinese score\n");
-		printf("\t\t\t\t6.Edit students' score\n");
-		printf("\t\t\t\t7.Reset your password\n\n\n");
-		printf("\t\t\t\t0.Back\n\n\n\n");
-		
-		printf("\t\t:");
-		scanf("%d",&select_num);
-		getchar();
-
+		select_num = meanu_tch_manager();
 		switch(select_num)
 		{
 			case 1:

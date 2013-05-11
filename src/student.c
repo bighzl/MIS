@@ -13,10 +13,9 @@ void show_stu_info(stu_node_t *node)
 	printf("\n\n\t\tid\tname\tage\tgrade\n\n\n");
 	printf("\t\t%d\t%s\t%d\t%d\n",node->stu.id,node->stu.name,node->stu.age,node->stu.grade);
 
-
+#if 0
 	printf("\n\n\n\t\t\t\t0.Back\n\n\n\n");
 	
-	printf("\t\t:");	
 	scanf("%d",&select_num);
 	getchar();
 
@@ -24,6 +23,12 @@ void show_stu_info(stu_node_t *node)
 		return;
 	else
 		show_stu_info(node);
+#endif 
+
+//return with a ' ';
+	printf("\n\n\n\n");	
+	getchar();
+	return;
 
 
 
@@ -40,6 +45,7 @@ void show_score(stu_node_t *node)
 	printf("\n\n\t\tmath\tc\tchinese\taverage\trank\n\n\n");
 	printf("\t\t%d\t%d\t%d\t%d\t%d\n",node->stu.score.math,node->stu.score.c,node->stu.score.chinese,node->stu.score.ave,node->stu.score.rank);
 
+#if 0
 	printf("\n\n\n\t\t\t\t0.Back\n\n\n\n");
 	printf("\t\t:");	
 	scanf("%d",&select_num);
@@ -50,7 +56,13 @@ void show_score(stu_node_t *node)
 	else
 		show_score(node);
 
+#endif 
 
+
+	//return with a ' ';
+	printf("\n\n\n\n");
+	getchar();
+	return;
 
 }
 
@@ -107,17 +119,7 @@ void stu_manager(stu_node_t *node)
 	int select_num;
 	while(1)
 	{
-		system("clear");
-		printf("\n\n\n\n\t\t**************Welcome aboard****************\n\n\n\n");
-		printf("\t\t\t\t1.Check your infomation\n");
-		printf("\t\t\t\t2.Check your score\n");
-		printf("\t\t\t\t3.Reset your password\n\n\n");
-		printf("\t\t\t\t0.Back\n\n\n\n");
-		
-		printf("\t\t:");
-		scanf("%d",&select_num);
-		getchar();
-
+		select_num = meanu_stu_manager();
 		switch(select_num)
 		{
 			case 1:

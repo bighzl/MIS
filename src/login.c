@@ -7,9 +7,12 @@ extern tch_node_t *tch_head;
 
 int stu_login()
 {
+#if 0
+	//***** moved in front of login() in main() ***********//
 
 	//cause of selected student login,so load the students' info
 	load_stu_info();
+#endif
 
 	int flag = 0;
 	int get_id;
@@ -19,12 +22,12 @@ int stu_login()
 	stu_node_t *p = NULL;
 
 	//get id
-	printf("\nId:");
+	printf("\n\t\tId:");
 	scanf("%d",&get_id);
 	getchar();
 
 	//get passwd
-	printf("\nPassword:");
+	printf("\n\t\tPassword:");
 	scanf("%s",get_passwd);
 	getchar();
 
@@ -74,24 +77,28 @@ int stu_login()
 int tch_login()
 {
 
+#if 0
+	//******** move in front of login() in main() ***********//
+
 	//cause of selected teacher's login,so load the teachers' info
 	load_tch_info();
 	load_stu_info();
+#endif
 
 	int flag = 0;
 	int get_id;
 	char get_passwd[32];
 
-	//mark the logging_in student's info and pass it next 
+	//mark the logging_in teacher's info and pass it next 
 	tch_node_t *p = NULL;
 
 	//get id
-	printf("\nId:");
+	printf("\n\t\tId:");
 	scanf("%d",&get_id);
 	getchar();
 
 	//get passwd
-	printf("\nPassword:");
+	printf("\n\t\tPassword:");
 	scanf("%s",get_passwd);
 	getchar();
 
@@ -152,44 +159,80 @@ void show_about()
 }
 
 
+
+void admin_login()
+{
+
+	int flag = 0;
+	char get_id[128];
+	char get_passwd[32];
+
+	//mark the logging_in student's info and pass it next 
+	tch_node_t *p = NULL;
+
+	//get id
+	printf("\n\t\tUsername:");
+	scanf("%s",&get_id);
+	getchar();
+
+	//get passwd
+	printf("\n\t\tPassword:");
+	scanf("%s",get_passwd);
+	getchar();
+		
+	//compare id and paswd
+	if(strcmp(get_id,"admin")==0 && strcmp(get_passwd,"admin")==0)
+
+	{
+		admin_manager();
+	}
+	else
+	{
+		//to count error times
+		static count = 0;
+		count++;
+		printf("\n\t\tError!");
+		admin_login();
+
+		//error>3 times,exit
+		if(count>=3)
+			exit(-1);
+	}
+}
+
+
+
+
 void login()
 {
 	int select_num;
 	while(1)
 	{
-		system("clear");
-		printf("\n\n\n\n\t\t******************Welcome to MIS*****************\n\n\n\n");
-		printf("\t\t\t\t1.Students\n");
-		printf("\t\t\t\t2.Teachers\n");
-		printf("\t\t\t\t3.ADMIN\n\n\n"); 
-		printf("\n\t\t\t\t0.Exit\n");
-		printf("\n\n\n\n\t\t********************11.About*********************\n");
-
-		//record user's select
-		printf("\n\n\n\n:");
-		scanf("%d",&select_num);
-		getchar();
+		select_num = meanu_main_login();
 
 		switch (select_num)
 		{
+
 			case 1:
 				stu_login();
 				break;
+
 			case 2:
 				tch_login();
 				break;
-#if 0
+
 			case 3:
 				admin_login();
 				break;
-#endif
 
 			case 11:
 				show_about();
 				break;
+
 			case 0:
 				return;
 				break;
+
 			default:
 				printf("\nerror\n");
 				login();

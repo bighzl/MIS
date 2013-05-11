@@ -9,66 +9,68 @@
 #include"common.h"
 
 extern stu_node_t *stu_head;
+extern tch_node_t *tch_head;
 
-save_stu_info()
+void save_info()
 {	
-	char c,cc;
-	FILE *fp =  NULL;
-	stu_node_t *p = NULL;
+	char c;
+	FILE *sfp =  NULL;
+	FILE *tfp = NULL;
+	stu_node_t *sp = NULL;
+	tch_node_t *tp = NULL;
 
-	system("clear");
-	printf("\n\n\n\n\t\t**************Save data************\n\n\n\n");
-	printf("\n\n\t\tSave your data?(y/n) :");
 
-	//get user's choise
-	scanf("%c",&c);
-	getchar();
-
-	//to save
-	if(c == 'y')
+	if(stu_head!=NULL || tch_head!=NULL)
 	{
-		//open file in writable mode
-		fp = fopen("stu_db","w");	
 
-		if(fp == NULL)
-		{
-			printf("fopen error\n");
-			exit(-1);
-		}
-
-		//write link to file
-		for(p = stu_head; p!=NULL; p=p->next)
-		{
-
-			fprintf(fp,"%d %s %s %d %d %d %d %d %d %d\n",p->stu.id,p->stu.name,p->stu.passwd,p->stu.age,p->stu.grade,p->stu.score.math,p->stu.score.c,p->stu.score.chinese,p->stu.score.ave,p->stu.score.rank);
-
-		}
-		
-		fclose(fp);
-
-
-		printf("\n\t\tSaved,exiting\n\n\n\n");
-			//system("clear");
-		exit(-1);
-	}
-
-	//to not save
-	else
-	{
-		printf("\n\n\t\tData not saved, your sure?(y/n) :");
-		scanf("%c",&cc);
-		getchar();
-
-		//make sure to save or not
+		c = meanu_save_info();	
+			//to save
 		if(c == 'y')
 		{
+			//open file in writable mode
+			sfp = fopen("stu_db","w");	
+			tfp = fopen("tch_db","w");
+
+			if(sfp == NULL || tfp == NULL)
+			{
+				printf("fopen error\n");
+				exit(-1);
+			}
+
+			//write student's info to file
+			for(sp = stu_head; sp!=NULL; sp=sp->next)
+			{
+
+				fprintf(sfp,"%d %s %s %d %d %d %d %d %d %d\n",sp->stu.id,sp->stu.name,sp->stu.passwd,sp->stu.age,sp->stu.grade,sp->stu.score.math,sp->stu.score.c,sp->stu.score.chinese,sp->stu.score.ave,sp->stu.score.rank);
+
+			}
+
+			for(tp= tch_head; tp!=NULL; tp=tp->next)
+			{
+				fprintf(tfp,"%d %s %s %d\n",tp->tch.id,tp->tch.name,tp->tch.passwd,tp->tch.grade);
+
+			}
+			
+			fclose(sfp);
+			fclose(tfp);
+
+
+			printf("\n\t\tSaved,exiting\n\n\n\n\n\n\n\n");
+				//system("clear");
+			return;
+			//exit(-1);
+		}
+
+		//to not save
+		else
+		{
+			printf("\n\t\tNote saved,exiting\n\n\n\n\n\n\n\n");
+				
 			//system("clear");
 			exit(-1);
 		}
 
-			//get back to save
-		else
-			save_stu_info;
+
 	}
 	
 }
