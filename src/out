@@ -1,0 +1,11 @@
+load_info.c: In function ‘insert_link’:
+load_info.c:21: error: request for member ‘stu’ in something not a structure or union
+load_info.c: In function ‘load_info’:
+load_info.c:79: error: request for member ‘stu’ in something not a structure or union
+load_info.c:80: error: request for member ‘stu’ in something not a structure or union
+load_info.c:81: error: request for member ‘stu’ in something not a structure or union
+load_info.c:82: error: request for member ‘stu’ in something not a structure or union
+load_info.c:83: error: request for member ‘stu’ in something not a structure or union
+load_info.c:84: error: request for member ‘stu’ in something not a structure or union
+load_info.c:85: error: request for member ‘stu’ in something not a structure or union
+load_info.c:86: error: request for member ‘stu’ in something not a structure or union
